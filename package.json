@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/whamsicore/monstermansionapp/issues"
   },
-  "homepage": "https://github.com/whamsicore/monstermansionapp#readme"
+  "homepage": "https://github.com/whamsicore/monstermansionapp#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
