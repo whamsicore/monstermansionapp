@@ -1,0 +1,19 @@
+{
+  "name": "monstermansionapp",
+  "version": "1.0.0",
+  "description": "Companion App for Monster Mansion board game",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whamsicore/monstermansionapp.git"
+  },
+  "author": "Chancegamer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/whamsicore/monstermansionapp/issues"
+  },
+  "homepage": "https://github.com/whamsicore/monstermansionapp#readme"
+}
