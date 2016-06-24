@@ -4,6 +4,6 @@ companion app for monster mansion board game
 1. Setup: node.js, angular, foundation
 2. Architecture: Intro, Timer
 3. Functionality: 
-.. 1. Option view
-.. 2. Play view
-.. 3. End view  
+..1. Option view
+..2. Play view
+..3. End view  
