@@ -19,11 +19,11 @@ app.get('/', function(req, res) {
 });
 app.get('/partials/home', function(req, res) {
   console.log('show home_view');
-  res.sendFile(path.join(__dirname + '/app/public/partials/home_view.html'));
+  res.sendFile(path.join(__dirname + '/app/partials/home_view.html'));
 });
 app.get('/partials/countdown', function(req, res) {
   console.log('show countdown_view');
-  res.sendFile(path.join(__dirname + '/app/public/partials/countdown_view.html'));
+  res.sendFile(path.join(__dirname + '/app/partials/countdown_view.html'));
 });
 
 ////////////
