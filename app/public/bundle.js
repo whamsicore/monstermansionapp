@@ -44,12 +44,51 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var css = __webpack_require__(7); 
-	__webpack_require__(9)
+	var css = __webpack_require__(1); 
+	__webpack_require__(5);
+	__webpack_require__(6);
 
 /***/ },
-/* 1 */,
-/* 2 */,
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(2);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(4)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./main.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./main.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".logo_cont {\n  text-align: center;\n  margin-bottom: 30px; }\n  .logo_cont .logo {\n    padding-left: 13px;\n    width: 300px; }\n\n.selection_cont {\n  text-align: center; }\n  .selection_cont .options_cont {\n    position: relative;\n    margin: 0 auto;\n    margin-bottom: 10px;\n    width: 300px; }\n  .selection_cont .dropdown_option {\n    -webkit-border-radius: 2px;\n    -moz-border-radius: 2px;\n    -ms-border-radius: 2px;\n    border-radius: 2px;\n    position: relative;\n    -webkit-appearance: none;\n    border: none;\n    width: 100%;\n    height: 50px;\n    background-color: #B8E986;\n    font-size: 14px;\n    font-weight: 500;\n    outline: none;\n    padding-left: 25px; }\n    .selection_cont .dropdown_option:hover {\n      cursor: pointer;\n      border-color: #777; }\n  .selection_cont .event_options .text {\n    text-align: left;\n    line-height: 50px; }\n\n.cta_cont {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 120px;\n  line-height: 120px;\n  font-size: 35px;\n  background-color: #333;\n  font-weight: bold;\n  color: #fff;\n  text-align: center; }\n  .cta_cont:hover {\n    cursor: pointer; }\n\n.checkmark {\n  position: absolute;\n  right: 20px;\n  top: 9px;\n  display: inline-block;\n  -ms-transform: rotate(45deg);\n  /* IE 9 */\n  -webkit-transform: rotate(45deg);\n  /* Chrome, Safari, Opera */\n  transform: rotate(45deg); }\n  .checkmark .checkmark_circle {\n    background-color: #333;\n    position: absolute;\n    width: 22px;\n    height: 22px;\n    border-radius: 11px; }\n  .checkmark .checkmark_stem {\n    position: absolute;\n    width: 3px;\n    height: 9px;\n    background-color: #fff;\n    left: 11px;\n    top: 6px; }\n  .checkmark .checkmark_kick {\n    position: absolute;\n    width: 3px;\n    height: 3px;\n    background-color: #fff;\n    left: 8px;\n    top: 12px; }\n\nbody {\n  background-color: #eee; }\n  body .app {\n    padding-top: 100px;\n    background-color: #7ED321;\n    height: 100%;\n    max-width: 375px;\n    position: relative; }\n", ""]);
+
+	// exports
+
+
+/***/ },
 /* 3 */
 /***/ function(module, exports) {
 
@@ -358,50 +397,10 @@
 
 
 /***/ },
-/* 5 */,
-/* 6 */,
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(8);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./main.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./main.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".logo_cont {\n  text-align: center; }\n  .logo_cont .logo {\n    width: 300px; }\n\nbody {\n  background-color: #7ED321;\n  padding-top: 100px; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-/* 9 */
+/* 5 */
 /***/ function(module, exports) {
+
+	
 
 	var monster_app = angular.module('monster_app', [
 	  'monster_controllers', 
@@ -415,13 +414,73 @@
 	monster_app.config(
 	[       '$stateProvider', '$urlRouterProvider', '$httpProvider',
 	function($stateProvider,   $urlRouterProvider,   $httpProvider  ){
-
+	  ///////////////////////
+	  // ANGULAR UI ROUTER //
+	  ///////////////////////
+	  $urlRouterProvider.otherwise("/home"); // default to return_selection $state
+	  
+	  // func: ui routing for SPA functionality
+	  $stateProvider
+	    .state( 'home_view', {
+	      url: '/home',
+	      templateUrl: '/partials/home',
+	      controller: 'home_controller'
+	    })
+	    .state('countdown_view', {
+	      url: '/countdown',
+	      templateUrl: '/partials/countdown',
+	      // controller: 'home_controller'
+	    })
 	}]);
 
 	monster_app.run(
 	[       '$rootScope',
 	function($rootScope) {
 	  console.log('@monster_app .run()');
+
+	}]);
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	angular.module('monster_controllers')
+	.controller('home_controller', 
+	[       '$scope', 
+	function($scope) {
+	  ////////////
+	  // CONFIG //
+	  ////////////
+	  var config = {
+	    options: {
+	      players: [4,5,6,7,8],
+	      themes: ['Escape!', 'Vampyre Coven', 'Zombiepocalypse', 'Tomb Of The Pharoah', 'Alien Spaceship'],
+	    }, 
+	  }
+
+	  //////////
+	  // INIT //
+	  //////////
+	  $scope.options = {
+	    players: {
+	      values: config.options.players.map(function(num) {
+	        return num + ' Players';
+	      }),
+	      value: '4 Players'
+	    },
+	    themes: {
+	      values: config.options.themes.map(function(theme_value) {
+	        return 'Theme: ' + theme_value;
+	      }),
+	      value: 'Theme: Escape!'
+	    }
+	  }
+	  ////////////
+	  // EVENTS //
+	  ////////////
+	  $scope.onClickStart = function($event) {
+	    console.log('@onClickStart')
+	  }
 
 	}]);
 

@@ -2,10 +2,26 @@ $primary_green: #7ED321;
 $secondary_green: #B8E986;
 $primary_black: #333;
 
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
 @import 'home';
 @import 'timer';
 
 body {
-  background-color: $primary_green;
-  padding-top: 100px; 
-}
+  background-color: #eee;
+  // padding: 0 00px;
+
+  .app {
+    padding-top: 100px; 
+    background-color: $primary_green;
+    height: 100%;
+    max-width: 375px;
+    position: relative; 
+  } // .app
+} // body
+
