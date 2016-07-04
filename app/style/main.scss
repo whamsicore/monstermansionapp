@@ -2,6 +2,10 @@ $primary_green: #7ED321;
 $secondary_green: #B8E986;
 $primary_black: #333;
 
+@import 'home';
+@import 'timer';
+
 body {
   background-color: $primary_green;
+  padding-top: 100px; 
 }

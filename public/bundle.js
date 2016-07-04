@@ -44,8 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var css = __webpack_require__(5); 
-
+	var css = __webpack_require__(7); 
+	__webpack_require__(9)
 
 /***/ },
 /* 1 */,
@@ -358,13 +358,15 @@
 
 
 /***/ },
-/* 5 */
+/* 5 */,
+/* 6 */,
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(6);
+	var content = __webpack_require__(8);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -373,8 +375,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js!./main.scss", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/sass-loader/index.js!./main.scss");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./main.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./main.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -384,7 +386,7 @@
 	}
 
 /***/ },
-/* 6 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -392,10 +394,36 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-color: #7ED321; }\n", ""]);
+	exports.push([module.id, ".logo_cont {\n  text-align: center; }\n  .logo_cont .logo {\n    width: 300px; }\n\nbody {\n  background-color: #7ED321;\n  padding-top: 100px; }\n", ""]);
 
 	// exports
 
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	var monster_app = angular.module('monster_app', [
+	  'monster_controllers', 
+	  'ui.router',
+	  // 'ngDialog'
+	  // 'monster_controllers', 
+	]);
+
+	angular.module('monster_controllers', []);
+
+	monster_app.config(
+	[       '$stateProvider', '$urlRouterProvider', '$httpProvider',
+	function($stateProvider,   $urlRouterProvider,   $httpProvider  ){
+
+	}]);
+
+	monster_app.run(
+	[       '$rootScope',
+	function($rootScope) {
+	  console.log('@monster_app .run()');
+
+	}]);
 
 /***/ }
 /******/ ]);
