@@ -8,7 +8,6 @@
   }
   margin-bottom: 30px;
 }
-
 .selection_cont {
   text-align: center;
   
@@ -18,8 +17,8 @@
     margin-bottom: 10px;
     width:300px;
   }
-
   .dropdown_option { 
+    @extend .noselect;
     @include border-radius(2px);
     position: relative;
     -webkit-appearance: none;  
@@ -36,7 +35,6 @@
       border-color: #777;
     }
   } // .dropdown_option
-
   .event_options {
     .text {
       text-align: left;
@@ -47,7 +45,6 @@
 
   }
 } // options_cont
-
 .cta_cont {
   position: absolute;
   bottom: 0; 
@@ -63,9 +60,7 @@
   &:hover {
     cursor: pointer;
   }
-  
 }
-
 .selected {
 
 }
@@ -83,32 +78,41 @@ $height: 22;
   top: 9px;
   // top: calc(25px - #{$height/2}px);
   display: inline-block;
-  
   -ms-transform: rotate(45deg); /* IE 9 */
   -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
   transform: rotate(45deg);
-  .checkmark_circle {
-    background-color: $primary_black;
-    position: absolute;
-    width:#{$width}px;
-    height:#{$height}px;
-    border-radius:11px;
-    // left:0;
-    // top:0;
+  &.selected {
+    .checkmark_circle {
+      background-color: $primary_black;
+      border: none; 
+    }
+    .checkmark_stem, .checkmark_kick {
+      background-color: #fff;
+    }
   }
   .checkmark_stem {
     position: absolute;
     width:3px;
     height:9px;
-    background-color:#fff;
+    background-color: $primary_black;
     left:11px;
     top:6px;
+  }
+  .checkmark_stem, .checkmark_kick {
+    background-color: $primary_black;
+  }
+  .checkmark_circle {
+    position: absolute;
+    width:#{$width}px;
+    height:#{$height}px;
+    border-radius:11px;
+    background-color: $secondary_green;
+    border: 3px solid $primary_black;
   }
   .checkmark_kick {
     position: absolute;
     width:3px;
     height:3px;
-    background-color:#fff;
     left:8px;
     top:12px;
   }

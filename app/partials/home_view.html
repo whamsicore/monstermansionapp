@@ -22,9 +22,9 @@
     </select>
   </div>
   <div class='event_options options_cont'> 
-    <div class='dropdown_option'>
-      <div class='text'> Random Events </div>
-      <span class="checkmark selected">
+    <div class='event_toggle dropdown_option' ng-click='onClickEventToggle($event)'>
+      <div class='text'> Random Effects: {{ eventToggle.status ? 'On': 'Off'}} </div>
+      <span class="checkmark" ng-class='{selected: eventToggle.status}'>
         <div class="checkmark_circle"></div>
         <div class="checkmark_stem"></div>
         <div class="checkmark_kick"></div>

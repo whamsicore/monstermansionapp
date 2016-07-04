@@ -9,7 +9,7 @@ function($scope) {
     options: {
       players: [4,5,6,7,8],
       themes: ['Escape!', 'Vampyre Coven', 'Zombiepocalypse', 'Tomb Of The Pharoah', 'Alien Spaceship'],
-    }, 
+    },
   }
 
   //////////
@@ -29,11 +29,21 @@ function($scope) {
       value: 'Theme: Escape!'
     }
   }
+  
+  $scope.eventToggle = {
+    status: false
+  }
+  
   ////////////
   // EVENTS //
   ////////////
   $scope.onClickStart = function($event) {
-    console.log('@onClickStart')
+    console.log('@onClickStart');
+  }
+
+  $scope.onClickEventToggle = function($event) {
+    console.log('@onClickEventToggle');
+    $scope.eventToggle.status = !$scope.eventToggle.status;
   }
 
 }]);

@@ -83,7 +83,7 @@
 
 
 	// module
-	exports.push([module.id, ".logo_cont {\n  text-align: center;\n  margin-bottom: 30px; }\n  .logo_cont .logo {\n    padding-left: 13px;\n    width: 300px; }\n\n.selection_cont {\n  text-align: center; }\n  .selection_cont .options_cont {\n    position: relative;\n    margin: 0 auto;\n    margin-bottom: 10px;\n    width: 300px; }\n  .selection_cont .dropdown_option {\n    -webkit-border-radius: 2px;\n    -moz-border-radius: 2px;\n    -ms-border-radius: 2px;\n    border-radius: 2px;\n    position: relative;\n    -webkit-appearance: none;\n    border: none;\n    width: 100%;\n    height: 50px;\n    background-color: #B8E986;\n    font-size: 14px;\n    font-weight: 500;\n    outline: none;\n    padding-left: 25px; }\n    .selection_cont .dropdown_option:hover {\n      cursor: pointer;\n      border-color: #777; }\n  .selection_cont .event_options .text {\n    text-align: left;\n    line-height: 50px; }\n\n.cta_cont {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 120px;\n  line-height: 120px;\n  font-size: 35px;\n  background-color: #333;\n  font-weight: bold;\n  color: #fff;\n  text-align: center; }\n  .cta_cont:hover {\n    cursor: pointer; }\n\n.checkmark {\n  position: absolute;\n  right: 20px;\n  top: 9px;\n  display: inline-block;\n  -ms-transform: rotate(45deg);\n  /* IE 9 */\n  -webkit-transform: rotate(45deg);\n  /* Chrome, Safari, Opera */\n  transform: rotate(45deg); }\n  .checkmark .checkmark_circle {\n    background-color: #333;\n    position: absolute;\n    width: 22px;\n    height: 22px;\n    border-radius: 11px; }\n  .checkmark .checkmark_stem {\n    position: absolute;\n    width: 3px;\n    height: 9px;\n    background-color: #fff;\n    left: 11px;\n    top: 6px; }\n  .checkmark .checkmark_kick {\n    position: absolute;\n    width: 3px;\n    height: 3px;\n    background-color: #fff;\n    left: 8px;\n    top: 12px; }\n\nbody {\n  background-color: #eee; }\n  body .app {\n    padding-top: 100px;\n    background-color: #7ED321;\n    height: 100%;\n    max-width: 375px;\n    position: relative; }\n", ""]);
+	exports.push([module.id, ".noselect, .selection_cont .dropdown_option {\n  -webkit-touch-callout: none;\n  /* iOS Safari */\n  -webkit-user-select: none;\n  /* Chrome/Safari/Opera */\n  -khtml-user-select: none;\n  /* Konqueror */\n  -moz-user-select: none;\n  /* Firefox */\n  -ms-user-select: none;\n  /* Internet Explorer/Edge */\n  user-select: none;\n  /* Non-prefixed version, currently\n                                 not supported by any browser */ }\n\n.logo_cont {\n  text-align: center;\n  margin-bottom: 30px; }\n  .logo_cont .logo {\n    padding-left: 13px;\n    width: 300px; }\n\n.selection_cont {\n  text-align: center; }\n  .selection_cont .options_cont {\n    position: relative;\n    margin: 0 auto;\n    margin-bottom: 10px;\n    width: 300px; }\n  .selection_cont .dropdown_option {\n    -webkit-border-radius: 2px;\n    -moz-border-radius: 2px;\n    -ms-border-radius: 2px;\n    border-radius: 2px;\n    position: relative;\n    -webkit-appearance: none;\n    border: none;\n    width: 100%;\n    height: 50px;\n    background-color: #B8E986;\n    font-size: 14px;\n    font-weight: 500;\n    outline: none;\n    padding-left: 25px; }\n    .selection_cont .dropdown_option:hover {\n      cursor: pointer;\n      border-color: #777; }\n  .selection_cont .event_options .text {\n    text-align: left;\n    line-height: 50px; }\n\n.cta_cont {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 120px;\n  line-height: 120px;\n  font-size: 35px;\n  background-color: #333;\n  font-weight: bold;\n  color: #fff;\n  text-align: center; }\n  .cta_cont:hover {\n    cursor: pointer; }\n\n.checkmark {\n  position: absolute;\n  right: 20px;\n  top: 9px;\n  display: inline-block;\n  -ms-transform: rotate(45deg);\n  /* IE 9 */\n  -webkit-transform: rotate(45deg);\n  /* Chrome, Safari, Opera */\n  transform: rotate(45deg); }\n  .checkmark.selected .checkmark_circle {\n    background-color: #333;\n    border: none; }\n  .checkmark.selected .checkmark_stem, .checkmark.selected .checkmark_kick {\n    background-color: #fff; }\n  .checkmark .checkmark_stem {\n    position: absolute;\n    width: 3px;\n    height: 9px;\n    background-color: #333;\n    left: 11px;\n    top: 6px; }\n  .checkmark .checkmark_stem, .checkmark .checkmark_kick {\n    background-color: #333; }\n  .checkmark .checkmark_circle {\n    position: absolute;\n    width: 22px;\n    height: 22px;\n    border-radius: 11px;\n    background-color: #B8E986;\n    border: 3px solid #333; }\n  .checkmark .checkmark_kick {\n    position: absolute;\n    width: 3px;\n    height: 3px;\n    left: 8px;\n    top: 12px; }\n\nbody {\n  background-color: #eee; }\n  body .app {\n    padding-top: 80px;\n    min-height: 700px;\n    background-color: #7ED321;\n    max-width: 375px;\n    position: relative; }\n", ""]);
 
 	// exports
 
@@ -455,7 +455,7 @@
 	    options: {
 	      players: [4,5,6,7,8],
 	      themes: ['Escape!', 'Vampyre Coven', 'Zombiepocalypse', 'Tomb Of The Pharoah', 'Alien Spaceship'],
-	    }, 
+	    },
 	  }
 
 	  //////////
@@ -475,11 +475,21 @@
 	      value: 'Theme: Escape!'
 	    }
 	  }
+	  
+	  $scope.eventToggle = {
+	    status: false
+	  }
+	  
 	  ////////////
 	  // EVENTS //
 	  ////////////
 	  $scope.onClickStart = function($event) {
-	    console.log('@onClickStart')
+	    console.log('@onClickStart');
+	  }
+
+	  $scope.onClickEventToggle = function($event) {
+	    console.log('@onClickEventToggle');
+	    $scope.eventToggle.status = !$scope.eventToggle.status;
 	  }
 
 	}]);
