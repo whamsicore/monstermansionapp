@@ -8,8 +8,10 @@ var app = express();
 ////////////
 // ROUTES //
 ////////////
+app.use(express.static('public'));
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'));
+  console.log('testing, __dirname = ',__dirname)
+  res.sendFile(path.join(__dirname + '/app/index.html'));
 });
 
 ////////////

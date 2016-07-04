@@ -18,5 +18,11 @@
   "homepage": "https://github.com/whamsicore/monstermansionapp#readme",
   "dependencies": {
     "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1"
   }
 }
