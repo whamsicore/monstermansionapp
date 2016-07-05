@@ -15,15 +15,15 @@ app.use(express.static('app/public'));
 /////////
 app.get('/', function(req, res) {
   console.log('__dirname = ',__dirname);
-  res.sendFile(path.join(__dirname + '/app/index.html'));
-});
+  res.sendFile(path.join(__dirname + '/app/main.html'));
+})
 app.get('/partials/home', function(req, res) {
   console.log('show home_view');
   res.sendFile(path.join(__dirname + '/app/partials/home_view.html'));
 });
-app.get('/partials/countdown', function(req, res) {
-  console.log('show countdown_view');
-  res.sendFile(path.join(__dirname + '/app/partials/countdown_view.html'));
+app.get('/partials/timer', function(req, res) {
+  console.log('show timer_view');
+  res.sendFile(path.join(__dirname + '/app/partials/timer_view.html'));
 });
 
 ////////////

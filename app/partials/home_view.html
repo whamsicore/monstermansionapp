@@ -1,14 +1,12 @@
 
-<div class='logo_cont cont'>
-  <img class='logo' src='http://i.imgur.com/Jo6XWir.png' alt='monster mansion logo'/>
-</div>
 
 <div class='selection_cont cont'>
   <div class='player_options options_cont'> 
     <select 
       class='dropdown_option player_option' 
-      ng-options='v for v in options.players.values'
-      ng-model='options.players.value' 
+      ng-options='v.label for v in options.players.values'
+      ng-init= 'options.players.selection = options.players.values[0]'
+      ng-model='options.players.selection' 
     >
     </select>
   </div>
@@ -16,14 +14,15 @@
   <div class='theme_options options_cont'> 
     <select 
       class='dropdown_option theme_option' 
-      ng-options='v for v in options.themes.values'
-      ng-model='options.themes.value' 
+      ng-options='v.label for v in options.themes.values'
+      ng-init= 'options.themes.selection = options.themes.values[0]'
+      ng-model='options.themes.selection' 
     >
     </select>
   </div>
   <div class='event_options options_cont'> 
     <div class='event_toggle dropdown_option' ng-click='onClickEventToggle($event)'>
-      <div class='text'> Random Effects: {{ eventToggle.status ? 'On': 'Off'}} </div>
+      <div class='text'> Random Stuff ({{ eventToggle.status ? 'On': 'Off'}}) </div>
       <span class="checkmark" ng-class='{selected: eventToggle.status}'>
         <div class="checkmark_circle"></div>
         <div class="checkmark_stem"></div>

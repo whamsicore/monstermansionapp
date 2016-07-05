@@ -1,0 +1,26 @@
+{
+  "name": "monstermansionapp",
+  "description": "Companion App for Monster Mansion board game",
+  "main": "app/main.js",
+  "authors": [
+    "Chancegamer"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/whamsicore/monstermansionapp",
+  "moduleType": [
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-timer": "^1.3.4",
+    "moment": "momentjs#^2.14.1",
+    "humanize-duration": "^3.9.0"
+  }
+}

@@ -1,7 +1,7 @@
 angular.module('monster_controllers')
 .controller('home_controller', 
-[       '$scope', 
-function($scope) {
+[       '$scope', '$state', 'CommonData',
+function($scope,   $state,   CommonData) {
   ////////////
   // CONFIG //
   ////////////
@@ -11,22 +11,27 @@ function($scope) {
       themes: ['Escape!', 'Vampyre Coven', 'Zombiepocalypse', 'Tomb Of The Pharoah', 'Alien Spaceship'],
     },
   }
-
   //////////
   // INIT //
   //////////
+  $scope.current_state = $state.current;
+  
   $scope.options = {
     players: {
       values: config.options.players.map(function(num) {
-        return num + ' Players';
+        return {
+          value: num,
+          label: num + ' Players'
+        }
       }),
-      value: '4 Players'
     },
     themes: {
       values: config.options.themes.map(function(theme_value) {
-        return 'Theme: ' + theme_value;
+        return {
+          value: theme_value, 
+          label: 'Theme: ' + theme_value
+        }
       }),
-      value: 'Theme: Escape!'
     }
   }
   
@@ -39,6 +44,10 @@ function($scope) {
   ////////////
   $scope.onClickStart = function($event) {
     console.log('@onClickStart');
+
+    CommonData.setData('player_selection', $scope.options.players.selection.value);
+    CommonData.setData('theme_selection', $scope.options.themes.selection.value);
+    $state.go('timer_view');
   }
 
   $scope.onClickEventToggle = function($event) {

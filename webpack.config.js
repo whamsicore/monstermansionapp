@@ -1,5 +1,5 @@
 module.exports = {    
-  entry: "./app/entry.js",
+  entry: "./app/js/main.js",
   output: {
       path: __dirname,
       filename: "./app/public/bundle.js"
@@ -11,5 +11,11 @@ module.exports = {
             loaders: ["style", "css", "sass"] 
           }
       ]
+  }, 
+  resolve: {
+    alias: {
+      moment: 'moment/moment.js',
+    },
+    moduleDirectories: ['bower_components']
   }
-}
+};

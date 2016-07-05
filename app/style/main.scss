@@ -17,18 +17,48 @@ $primary_black: #333;
   user-select: none;           /* Non-prefixed version, currently
                                  not supported by any browser */
 }
+.animated_transition {
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s; 
+}
 @import 'home';
 @import 'timer';
+
+////////////////
+// INDEX PAGE //
+////////////////
 
 body {
   background-color: #eee;
   
   .app {
-    padding-top: 80px; 
+    // padding-top: 80px; 
     min-height: 700px;
     background-color: $primary_green;
     max-width: 375px;
     position: relative; 
   } // .app
 } // body
+
+.logo_cont {
+  margin-top: 90px;
+  text-align: center;
+  .logo {
+    @extend .animated_transition;
+    padding-left: 13px;
+    &.home_view {
+      width: 300px;
+    }
+    &.timer_view {
+      width: 220px;
+    }
+
+  }
+  margin-bottom: 30px;
+}
+
+
 

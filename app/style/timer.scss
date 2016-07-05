@@ -1,0 +1,27 @@
+.timer_cont {
+  text-align: center; 
+  font-size: 100px; 
+  font-weight: bold; 
+}
+
+.loading-container {
+  margin: 0 auto;
+  background-color:$primary_black;
+  width:280px;
+  height:35px;
+  border-color: #4A4A4A;
+  border-width:2px;
+  border-style:solid;
+  @include border-radius(35px);
+}
+
+.loading-progress {
+  background-color:$secondary_green;
+  height:31px;
+  min-width: 11%; 
+  @include border-radius(35px);
+  // -moz-border-radius:35px 0px 0px 35px;
+  // -webkit-border-radius:35px 0px 0px 35px;
+  // border-radius:35px 0px 0px 35px;
+  // margin-left: -1px;
+}

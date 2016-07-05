@@ -14,12 +14,29 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
   
+  
+  <script src="/bower_components/moment/min/moment.min.js"></script>
+  <script src="/bower_components/moment/min/locales.min.js"></script>
+  <script src="/bower_components/humanize-duration/humanize-duration.js"></script>
+  <script src="/bower_components/angular-timer/dist/angular-timer.min.js"></script>
+  
   <script src="bundle.js"></script>
+
   <link rel='icon' href='favicon.ico' type='image/x-icon'/ >
 </head>
 <body>
   <div class='app container' ng-app='monster_app' ng-controller='home_controller'>
+    <div class='logo_cont cont'>
+      <img  
+        class='logo' 
+        src='http://i.imgur.com/Jo6XWir.png' 
+        alt='monster mansion logo'
+        ng-class='current_state_name'
+      />
+    </div>
+    <timer />
     <div ui-view></div>
+  
   </div>
 </body>
 

@@ -44,9 +44,67 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var css = __webpack_require__(1); 
+	
+
+	var monster_app = angular.module('monster_app', [
+	  'monster_controllers', 
+	  'timer',
+	  'ui.router',
+	  // 'ngDialog'
+	  // 'monster_controllers', 
+	]);
+
+	angular.module('monster_controllers', []);
+
+	monster_app.config(
+	[       '$stateProvider', '$urlRouterProvider', '$httpProvider',
+	function($stateProvider,   $urlRouterProvider,   $httpProvider  ){
+	  ///////////////////////
+	  // ANGULAR UI ROUTER //
+	  ///////////////////////
+	  $urlRouterProvider.otherwise("/home"); // default to return_selection $state
+	  
+	  // func: ui routing for SPA functionality
+	  $stateProvider
+	    .state( 'home_view', {
+	      url: '/home',
+	      templateUrl: '/partials/home',
+	      controller: 'home_controller'
+	    })
+	    .state('timer_view', {
+	      url: '/timer',
+	      templateUrl: '/partials/timer',
+	      controller: 'timer_controller'
+	    })
+	}]);
+
+	monster_app.run(
+	[       '$rootScope', '$state', 'CommonData',
+	function($rootScope,   $state,   CommonData) {
+	  
+	  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+	    $rootScope.current_state_name = toState.name;
+	    var player_count = CommonData.getData('player_selection'); 
+	    console.log('player_count=', player_count)
+	    
+	    if(toState.name === 'timer_view' && !player_count) {
+	      event.preventDefault();
+	      $state.go('home_view');
+	    }
+	    // console.log('to view = ', $rootScope.current_view);
+	  });
+	  // $rootScope.logo = {
+	  //   view: 'home'
+	  // }
+	}]);
+
+	//////////////////
+	// DEPENDENCIES //
+	//////////////////
+	__webpack_require__(1); 
 	__webpack_require__(5);
 	__webpack_require__(6);
+	__webpack_require__(7);
 
 /***/ },
 /* 1 */
@@ -83,7 +141,7 @@
 
 
 	// module
-	exports.push([module.id, ".noselect, .selection_cont .dropdown_option {\n  -webkit-touch-callout: none;\n  /* iOS Safari */\n  -webkit-user-select: none;\n  /* Chrome/Safari/Opera */\n  -khtml-user-select: none;\n  /* Konqueror */\n  -moz-user-select: none;\n  /* Firefox */\n  -ms-user-select: none;\n  /* Internet Explorer/Edge */\n  user-select: none;\n  /* Non-prefixed version, currently\n                                 not supported by any browser */ }\n\n.logo_cont {\n  text-align: center;\n  margin-bottom: 30px; }\n  .logo_cont .logo {\n    padding-left: 13px;\n    width: 300px; }\n\n.selection_cont {\n  text-align: center; }\n  .selection_cont .options_cont {\n    position: relative;\n    margin: 0 auto;\n    margin-bottom: 10px;\n    width: 300px; }\n  .selection_cont .dropdown_option {\n    -webkit-border-radius: 2px;\n    -moz-border-radius: 2px;\n    -ms-border-radius: 2px;\n    border-radius: 2px;\n    position: relative;\n    -webkit-appearance: none;\n    border: none;\n    width: 100%;\n    height: 50px;\n    background-color: #B8E986;\n    font-size: 14px;\n    font-weight: 500;\n    outline: none;\n    padding-left: 25px; }\n    .selection_cont .dropdown_option:hover {\n      cursor: pointer;\n      border-color: #777; }\n  .selection_cont .event_options .text {\n    text-align: left;\n    line-height: 50px; }\n\n.cta_cont {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 120px;\n  line-height: 120px;\n  font-size: 35px;\n  background-color: #333;\n  font-weight: bold;\n  color: #fff;\n  text-align: center; }\n  .cta_cont:hover {\n    cursor: pointer; }\n\n.checkmark {\n  position: absolute;\n  right: 20px;\n  top: 9px;\n  display: inline-block;\n  -ms-transform: rotate(45deg);\n  /* IE 9 */\n  -webkit-transform: rotate(45deg);\n  /* Chrome, Safari, Opera */\n  transform: rotate(45deg); }\n  .checkmark.selected .checkmark_circle {\n    background-color: #333;\n    border: none; }\n  .checkmark.selected .checkmark_stem, .checkmark.selected .checkmark_kick {\n    background-color: #fff; }\n  .checkmark .checkmark_stem {\n    position: absolute;\n    width: 3px;\n    height: 9px;\n    background-color: #333;\n    left: 11px;\n    top: 6px; }\n  .checkmark .checkmark_stem, .checkmark .checkmark_kick {\n    background-color: #333; }\n  .checkmark .checkmark_circle {\n    position: absolute;\n    width: 22px;\n    height: 22px;\n    border-radius: 11px;\n    background-color: #B8E986;\n    border: 3px solid #333; }\n  .checkmark .checkmark_kick {\n    position: absolute;\n    width: 3px;\n    height: 3px;\n    left: 8px;\n    top: 12px; }\n\nbody {\n  background-color: #eee; }\n  body .app {\n    padding-top: 80px;\n    min-height: 700px;\n    background-color: #7ED321;\n    max-width: 375px;\n    position: relative; }\n", ""]);
+	exports.push([module.id, ".noselect, .selection_cont .dropdown_option {\n  -webkit-touch-callout: none;\n  /* iOS Safari */\n  -webkit-user-select: none;\n  /* Chrome/Safari/Opera */\n  -khtml-user-select: none;\n  /* Konqueror */\n  -moz-user-select: none;\n  /* Firefox */\n  -ms-user-select: none;\n  /* Internet Explorer/Edge */\n  user-select: none;\n  /* Non-prefixed version, currently\n                                 not supported by any browser */ }\n\n.animated_transition, .logo_cont .logo {\n  -moz-transition: 0.5s;\n  -ms-transition: 0.5s;\n  -o-transition: 0.5s;\n  -webkit-transition: 0.5s;\n  transition: 0.5s; }\n\n.selection_cont {\n  text-align: center; }\n  .selection_cont .options_cont {\n    position: relative;\n    margin: 0 auto;\n    margin-bottom: 10px;\n    width: 300px; }\n  .selection_cont .dropdown_option {\n    -webkit-border-radius: 2px;\n    -moz-border-radius: 2px;\n    -ms-border-radius: 2px;\n    border-radius: 2px;\n    position: relative;\n    -webkit-appearance: none;\n    border: none;\n    width: 100%;\n    height: 50px;\n    background-color: #B8E986;\n    font-size: 14px;\n    font-weight: 500;\n    outline: none;\n    padding-left: 25px; }\n    .selection_cont .dropdown_option:hover {\n      cursor: pointer;\n      border-color: #777; }\n  .selection_cont .event_options .text {\n    text-align: left;\n    line-height: 50px; }\n\n.cta_cont {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 120px;\n  line-height: 120px;\n  font-size: 35px;\n  background-color: #333;\n  font-weight: bold;\n  color: #fff;\n  text-align: center; }\n  .cta_cont:hover {\n    cursor: pointer; }\n\n.checkmark {\n  position: absolute;\n  right: 20px;\n  top: 9px;\n  display: inline-block;\n  -ms-transform: rotate(45deg);\n  /* IE 9 */\n  -webkit-transform: rotate(45deg);\n  /* Chrome, Safari, Opera */\n  transform: rotate(45deg); }\n  .checkmark.selected .checkmark_circle {\n    background-color: #333;\n    border: none; }\n  .checkmark.selected .checkmark_stem, .checkmark.selected .checkmark_kick {\n    background-color: #fff; }\n  .checkmark .checkmark_stem {\n    position: absolute;\n    width: 3px;\n    height: 9px;\n    background-color: #333;\n    left: 11px;\n    top: 6px; }\n  .checkmark .checkmark_stem, .checkmark .checkmark_kick {\n    background-color: #333; }\n  .checkmark .checkmark_circle {\n    position: absolute;\n    width: 22px;\n    height: 22px;\n    border-radius: 11px;\n    background-color: #B8E986;\n    border: 3px solid #333; }\n  .checkmark .checkmark_kick {\n    position: absolute;\n    width: 3px;\n    height: 3px;\n    left: 8px;\n    top: 12px; }\n\n.timer_cont {\n  text-align: center;\n  font-size: 100px;\n  font-weight: bold; }\n\n.loading-container {\n  margin: 0 auto;\n  background-color: #333;\n  width: 280px;\n  height: 35px;\n  border-color: #4A4A4A;\n  border-width: 2px;\n  border-style: solid;\n  -webkit-border-radius: 35px;\n  -moz-border-radius: 35px;\n  -ms-border-radius: 35px;\n  border-radius: 35px; }\n\n.loading-progress {\n  background-color: #B8E986;\n  height: 31px;\n  min-width: 11%;\n  -webkit-border-radius: 35px;\n  -moz-border-radius: 35px;\n  -ms-border-radius: 35px;\n  border-radius: 35px; }\n\nbody {\n  background-color: #eee; }\n  body .app {\n    min-height: 700px;\n    background-color: #7ED321;\n    max-width: 375px;\n    position: relative; }\n\n.logo_cont {\n  margin-top: 90px;\n  text-align: center;\n  margin-bottom: 30px; }\n  .logo_cont .logo {\n    padding-left: 13px; }\n    .logo_cont .logo.home_view {\n      width: 300px; }\n    .logo_cont .logo.timer_view {\n      width: 220px; }\n", ""]);
 
 	// exports
 
@@ -400,54 +458,10 @@
 /* 5 */
 /***/ function(module, exports) {
 
-	
-
-	var monster_app = angular.module('monster_app', [
-	  'monster_controllers', 
-	  'ui.router',
-	  // 'ngDialog'
-	  // 'monster_controllers', 
-	]);
-
-	angular.module('monster_controllers', []);
-
-	monster_app.config(
-	[       '$stateProvider', '$urlRouterProvider', '$httpProvider',
-	function($stateProvider,   $urlRouterProvider,   $httpProvider  ){
-	  ///////////////////////
-	  // ANGULAR UI ROUTER //
-	  ///////////////////////
-	  $urlRouterProvider.otherwise("/home"); // default to return_selection $state
-	  
-	  // func: ui routing for SPA functionality
-	  $stateProvider
-	    .state( 'home_view', {
-	      url: '/home',
-	      templateUrl: '/partials/home',
-	      controller: 'home_controller'
-	    })
-	    .state('countdown_view', {
-	      url: '/countdown',
-	      templateUrl: '/partials/countdown',
-	      // controller: 'home_controller'
-	    })
-	}]);
-
-	monster_app.run(
-	[       '$rootScope',
-	function($rootScope) {
-	  console.log('@monster_app .run()');
-
-	}]);
-
-/***/ },
-/* 6 */
-/***/ function(module, exports) {
-
 	angular.module('monster_controllers')
 	.controller('home_controller', 
-	[       '$scope', 
-	function($scope) {
+	[       '$scope', '$state', 'CommonData',
+	function($scope,   $state,   CommonData) {
 	  ////////////
 	  // CONFIG //
 	  ////////////
@@ -457,22 +471,27 @@
 	      themes: ['Escape!', 'Vampyre Coven', 'Zombiepocalypse', 'Tomb Of The Pharoah', 'Alien Spaceship'],
 	    },
 	  }
-
 	  //////////
 	  // INIT //
 	  //////////
+	  $scope.current_state = $state.current;
+	  
 	  $scope.options = {
 	    players: {
 	      values: config.options.players.map(function(num) {
-	        return num + ' Players';
+	        return {
+	          value: num,
+	          label: num + ' Players'
+	        }
 	      }),
-	      value: '4 Players'
 	    },
 	    themes: {
 	      values: config.options.themes.map(function(theme_value) {
-	        return 'Theme: ' + theme_value;
+	        return {
+	          value: theme_value, 
+	          label: 'Theme: ' + theme_value
+	        }
 	      }),
-	      value: 'Theme: Escape!'
 	    }
 	  }
 	  
@@ -485,12 +504,54 @@
 	  ////////////
 	  $scope.onClickStart = function($event) {
 	    console.log('@onClickStart');
+
+	    CommonData.setData('player_selection', $scope.options.players.selection.value);
+	    CommonData.setData('theme_selection', $scope.options.themes.selection.value);
+	    $state.go('timer_view');
 	  }
 
 	  $scope.onClickEventToggle = function($event) {
 	    console.log('@onClickEventToggle');
 	    $scope.eventToggle.status = !$scope.eventToggle.status;
 	  }
+
+	}]);
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	angular.module('monster_controllers')
+	.controller('timer_controller', 
+	[       '$scope', 'CommonData',
+	function($scope,   CommonData) {
+	  
+	  var player_count = CommonData.getData('player_selection'); 
+	  // var player_count = .01; // for testing
+	  $scope.timer_total = player_count * 60 * 10; // 10 minutes per player
+
+
+	}]);
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	angular.module('monster_app')
+	.factory('CommonData', 
+	[       
+	function() {
+	  var data = {};
+	  
+	  return {
+	    getData : function(key) {
+	        return data[key];
+	    },
+	    setData : function(key, value) {
+	        data[key] = value;
+	        return data[key];
+	    }
+	  }; // return
 
 	}]);
 
